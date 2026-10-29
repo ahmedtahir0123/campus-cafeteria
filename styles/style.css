@@ -1,0 +1,174 @@
+/* Import an attractive, rounded font for a friendly look */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Bright and appetizing color palette */
+:root {
+    --bg-main: #f9fafb;       /* Very light, clean gray for the page background */
+    --bg-card: #ffffff;       /* Pure white for the menu cards */
+    --text-primary: #1f2937;  /* Dark slate for high readability */
+    --text-secondary: #4b5563;/* Medium slate for secondary text */
+    --accent: #ff5722;        /* Vibrant, appetizing deep orange */
+    --accent-hover: #e64a19;  /* Slightly darker orange for interactions */
+    --price-color: #10b981;   /* Fresh green for the prices */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--bg-card);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Soft drop shadow */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    /* Bright gradient text effect */
+    background: linear-gradient(135deg, #ff5722, #ff9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--bg-card);
+    background-color: var(--accent);
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3); /* Glowing shadow on hover */
+}
+
+/* Main Menu Layout */
+main {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    /* Responsive grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* Menu Cards */
+.menu-category {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    border-top: 5px solid var(--accent); /* Bright splash of color on top */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover elevation effect */
+.menu-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.menu-category h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+/* Small decorative underline for category titles */
+.menu-category h2::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 4px;
+    background-color: var(--accent);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.menu-category ul {
+    list-style: none;
+}
+
+.menu-category li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px dashed #e5e7eb;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.menu-category li:last-child {
+    border-bottom: none;
+}
+
+.menu-category li:hover {
+    color: var(--accent-hover);
+    padding-left: 0.5rem; /* Slight shift to the right on hover */
+}
+
+/* Highlighting the price text */
+.menu-category li span {
+    color: var(--price-color);
+    font-weight: 700;
+    background-color: #ecfdf5; /* Very light green bubble */
+    padding: 0.2rem 0.6rem;
+    border-radius: 8px;
+}
+
+/* Required Responsive Media Queries for mobile screens */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        margin: 2rem auto;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    nav {
+        gap: 0.5rem;
+    }
+    
+    .menu-category {
+        padding: 1.5rem;
+    }
+} 
