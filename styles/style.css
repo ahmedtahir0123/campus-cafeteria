@@ -1,5 +1,40 @@
 
 /* ==========================================
+   CAMPUS CAFE - HOW TO ORDER PAGE
+   MEMBER 3
+========================================== */
+
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Theme colors */
+:root {
+    --bg-main: #f9fafb;
+    --bg-card: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --accent: #ff5722;
+    --accent-hover: #e64a19;
+    --price-color: #10b981;
+}
+
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base page styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================
    HOW TO ORDER PAGE - MEMBER 3
 ========================================== */
 
@@ -18,7 +53,12 @@
 
 /* Header and navigation */
 .order-page .order-header {
+    background-color: var(--bg-card);
     padding: 1.25rem 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .order-page .order-nav {
@@ -432,5 +472,16 @@
 
     .order-page .order-cta {
         padding: 2.25rem 1rem;
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .order-page *,
+    .order-page *::before,
+    .order-page *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
     }
 }
