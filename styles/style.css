@@ -1,174 +1,606 @@
-/* Import an attractive, rounded font for a friendly look */
+/* =========================================
+   CAMPUS BITES - UNIFIED STYLESHEET
+   Global theme inspired by feature/menu-page
+   Layout & Sections preserved from develop
+   ========================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Bright and appetizing color palette */
+/* 1. CSS RESET & GLOBAL PALETTE */
 :root {
-    --bg-main: #f9fafb;       /* Very light, clean gray for the page background */
-    --bg-card: #ffffff;       /* Pure white for the menu cards */
-    --text-primary: #1f2937;  /* Dark slate for high readability */
-    --text-secondary: #4b5563;/* Medium slate for secondary text */
-    --accent: #ff5722;        /* Vibrant, appetizing deep orange */
-    --accent-hover: #e64a19;  /* Slightly darker orange for interactions */
-    --price-color: #10b981;   /* Fresh green for the prices */
+  --primary-color: #ff5722;       /* Vibrant deep orange from menu */
+  --primary-dark: #e64a19;        /* Hover orange */
+  --secondary-color: #1f2937;      /* Dark slate heading/contrast color */
+  --accent-color: #ff9800;         /* Amber accent */
+  --background-color: #f9fafb;     /* Light clean gray page background */
+  --white: #ffffff;
+  --text-color: #1f2937;
+  --muted-color: #4b5563;
+  --border-color: #e5e7eb;
+  --price-color: #10b981;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Header & Navigation */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 70px 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+
+/* 2. HEADER & NAVIGATION */
 header {
-    background-color: var(--bg-card);
-    padding: 2rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Soft drop shadow */
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  background-color: var(--white);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    /* Bright gradient text effect */
-    background: linear-gradient(135deg, #ff5722, #ff9800);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.navbar {
+  width: 90%;
+  max-width: 1200px;
+  min-height: 75px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
 }
 
-nav a:hover {
-    color: var(--bg-card);
-    background-color: var(--accent);
-    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3); /* Glowing shadow on hover */
+.nav-links a {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--muted-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
-/* Main Menu Layout */
-main {
-    max-width: 1100px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    display: grid;
-    /* Responsive grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
 }
 
-/* Menu Cards */
+.nav-links a:focus-visible,
+.footer-links a:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+}
+
+
+/* 3. HERO / WELCOME SECTION */
+.hero {
+  min-height: 520px;
+  padding: 90px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(31, 41, 55, 0.85), rgba(31, 41, 55, 0.85)),
+    linear-gradient(135deg, var(--accent-color), var(--primary-color), var(--secondary-color));
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.tagline {
+  color: #fed7aa;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+.hero-content > p:not(.tagline) {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  color: #f3f4f6;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+/* 4. BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 13px 25px;
+  border: 2px solid var(--primary-color);
+  border-radius: 25px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.35);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.hero .btn-secondary {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.hero .btn-secondary:hover {
+  background-color: var(--white);
+  color: var(--secondary-color);
+}
+
+
+/* 5. ABOUT SECTION */
+.about {
+  background-color: var(--white);
+  text-align: center;
+}
+
+.about .container {
+  max-width: 900px;
+}
+
+.about p {
+  color: var(--muted-color);
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+
+/* 6. FEATURED FOOD CATEGORIES */
+.featured {
+  text-align: center;
+}
+
+.section-description {
+  color: var(--muted-color);
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 35px;
+}
+
+.food-card {
+  padding: 35px 25px;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  border-top: 5px solid var(--primary-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.food-icon {
+  width: 85px;
+  height: 85px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffedd5;
+  font-size: 2.8rem;
+}
+
+.food-card h3 {
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+}
+
+.food-card p {
+  color: var(--muted-color);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.text-link {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.text-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+
+/* 7. DAILY DEALS BANNER */
+.deals-banner {
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.deals-banner h2 {
+  color: var(--white);
+}
+
+.deals-banner p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  color: #e5e7eb;
+}
+
+.deals-banner .btn {
+  margin-top: 5px;
+}
+
+
+/* 8. ORDERING INFORMATION */
+.order-info {
+  text-align: center;
+  background-color: var(--background-color);
+}
+
+.order-info p {
+  max-width: 750px;
+  margin: 0 auto 25px;
+  color: var(--muted-color);
+}
+
+
+/* 9. FEEDBACK SECTION */
+.feedback {
+  text-align: center;
+  background-color: var(--white);
+}
+
+.feedback p {
+  max-width: 750px;
+  margin: 0 auto 25px;
+  color: var(--muted-color);
+}
+
+
+/* 10. MENU PAGE SPECIFIC STYLES (feature/menu-page) */
+.menu-grid {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
 .menu-category {
-    background-color: var(--bg-card);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-    border-top: 5px solid var(--accent); /* Bright splash of color on top */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border-top: 5px solid var(--primary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover elevation effect */
 .menu-category:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .menu-category h2 {
-    color: var(--text-primary);
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    position: relative;
-    padding-bottom: 0.5rem;
+  color: var(--secondary-color);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-/* Small decorative underline for category titles */
 .menu-category h2::after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 4px;
-    background-color: var(--accent);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 4px;
+  background-color: var(--primary-color);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .menu-category ul {
-    list-style: none;
+  list-style: none;
 }
 
 .menu-category li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px dashed #e5e7eb;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--muted-color);
+  transition: all 0.2s ease;
 }
 
 .menu-category li:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .menu-category li:hover {
-    color: var(--accent-hover);
-    padding-left: 0.5rem; /* Slight shift to the right on hover */
+  color: var(--primary-dark);
+  padding-left: 0.5rem;
 }
 
-/* Highlighting the price text */
 .menu-category li span {
-    color: var(--price-color);
-    font-weight: 700;
-    background-color: #ecfdf5; /* Very light green bubble */
-    padding: 0.2rem 0.6rem;
-    border-radius: 8px;
+  color: var(--price-color);
+  font-weight: 700;
+  background-color: #ecfdf5;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
 }
 
-/* Required Responsive Media Queries for mobile screens */
-@media (max-width: 768px) {
-    main {
-        grid-template-columns: 1fr;
-        margin: 2rem auto;
-    }
 
-    header h1 {
-        font-size: 2.2rem;
-    }
+/* 11. FOOTER */
+.footer {
+  padding: 35px 5%;
+  background-color: #111827;
+  color: var(--white);
+  text-align: center;
+}
 
-    nav {
-        gap: 0.5rem;
-    }
-    
-    .menu-category {
-        padding: 1.5rem;
-    }
+.footer p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.footer-links a {
+  color: #fed7aa;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+
+/* 12. RESPONSIVE DESIGN */
+@media screen and (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px 0;
+    gap: 15px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .hero {
+    min-height: 450px;
+    padding: 70px 5%;
+  }
+
+  .section {
+    padding: 55px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    margin: 2rem auto;
+  }
+
+  .menu-category {
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    width: 92%;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    gap: 10px 16px;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    min-height: 420px;
+    padding: 60px 6%;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-content > p:not(.tagline) {
+    font-size: 1rem;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  .section {
+    padding: 45px 0;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .food-card {
+    padding: 28px 22px;
+  }
+
+  .footer-links {
+    gap: 12px 20px;
+  }
+}
+
+
+/* 13. REDUCED MOTION ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
