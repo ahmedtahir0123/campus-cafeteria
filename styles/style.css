@@ -1,0 +1,1259 @@
+/* =========================================
+   CAMPUS BITES - UNIFIED STYLESHEET
+   Global theme + layout from develop
+   Deals page styles from develop (feature/deal-page)
+   Order page styles (scoped) from feature/order-page
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* 1. CSS RESET & GLOBAL PALETTE */
+:root {
+  --primary-color: #ff5722;
+  --primary-dark: #e64a19;
+  --secondary-color: #1f2937;
+  --accent-color: #ff9800;
+  --background-color: #f9fafb;
+  --white: #ffffff;
+  --text-color: #1f2937;
+  --muted-color: #4b5563;
+  --border-color: #e5e7eb;
+  --price-color: #10b981;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+
+  /* Aliases so the order-page styles keep working with the unified palette */
+  --bg-main: var(--background-color);
+  --bg-card: var(--white);
+  --text-primary: var(--text-color);
+  --text-secondary: var(--muted-color);
+  --accent: var(--primary-color);
+  --accent-hover: var(--primary-dark);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 70px 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+
+/* 2. HEADER & NAVIGATION */
+header {
+  background-color: var(--white);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  width: 90%;
+  max-width: 1200px;
+  min-height: 75px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--muted-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+}
+
+.nav-links a:focus-visible,
+.footer-links a:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+}
+
+
+/* 3. HERO / WELCOME SECTION */
+.hero {
+  min-height: 520px;
+  padding: 90px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(31, 41, 55, 0.85), rgba(31, 41, 55, 0.85)),
+    linear-gradient(135deg, var(--accent-color), var(--primary-color), var(--secondary-color));
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.tagline {
+  color: #fed7aa;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+.hero-content > p:not(.tagline) {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  color: #f3f4f6;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+/* 4. BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 13px 25px;
+  border: 2px solid var(--primary-color);
+  border-radius: 25px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.35);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.hero .btn-secondary {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.hero .btn-secondary:hover {
+  background-color: var(--white);
+  color: var(--secondary-color);
+}
+
+
+/* 5. ABOUT SECTION */
+.about {
+  background-color: var(--white);
+  text-align: center;
+}
+
+.about .container {
+  max-width: 900px;
+}
+
+.about p {
+  color: var(--muted-color);
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+
+/* 6. FEATURED FOOD CATEGORIES */
+.featured {
+  text-align: center;
+}
+
+.section-description {
+  color: var(--muted-color);
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 35px;
+}
+
+.food-card {
+  padding: 35px 25px;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  border-top: 5px solid var(--primary-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.food-icon {
+  width: 85px;
+  height: 85px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffedd5;
+  font-size: 2.8rem;
+}
+
+.food-card h3 {
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+}
+
+.food-card p {
+  color: var(--muted-color);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.text-link {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.text-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+
+/* 7. DAILY DEALS BANNER */
+.deals-banner {
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.deals-banner h2 {
+  color: var(--white);
+}
+
+.deals-banner p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  color: #e5e7eb;
+}
+
+.deals-banner .btn {
+  margin-top: 5px;
+}
+
+
+/* 8. ORDERING INFORMATION (home page section) */
+.order-info {
+  text-align: center;
+  background-color: var(--background-color);
+}
+
+.order-info p {
+  max-width: 750px;
+  margin: 0 auto 25px;
+  color: var(--muted-color);
+}
+
+
+/* 9. FEEDBACK SECTION */
+.feedback {
+  text-align: center;
+  background-color: var(--white);
+}
+
+.feedback p {
+  max-width: 750px;
+  margin: 0 auto 25px;
+  color: var(--muted-color);
+}
+
+
+/* 10. MENU PAGE SPECIFIC STYLES (feature/menu-page) */
+.menu-grid {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.menu-category {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border-top: 5px solid var(--primary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-category:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.menu-category h2 {
+  color: var(--secondary-color);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.menu-category h2::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 4px;
+  background-color: var(--primary-color);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.menu-category ul {
+  list-style: none;
+}
+
+.menu-category li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--muted-color);
+  transition: all 0.2s ease;
+}
+
+.menu-category li:last-child {
+  border-bottom: none;
+}
+
+.menu-category li:hover {
+  color: var(--primary-dark);
+  padding-left: 0.5rem;
+}
+
+.menu-category li span {
+  color: var(--price-color);
+  font-weight: 700;
+  background-color: #ecfdf5;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+}
+
+
+/* 11. HOW TO ORDER PAGE (feature/order-page) - scoped under .order-page */
+
+.order-page {
+  min-height: 100vh;
+}
+
+.order-page .order-main {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Header and navigation */
+.order-page .order-header {
+  background-color: var(--bg-card);
+  padding: 1.25rem 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.order-page .order-nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.order-page .order-logo {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.order-page .order-logo span {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
+.order-page .order-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.order-page .order-nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: 20px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.order-page .order-nav-links a:hover,
+.order-page .order-nav-links a.active {
+  color: #ffffff;
+  background-color: var(--accent);
+}
+
+/* Hero section */
+.order-page .order-hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  margin-bottom: 4rem;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border-top: 5px solid var(--accent);
+  border-radius: 20px;
+}
+
+.order-page .order-hero-content {
+  min-width: 0;
+}
+
+.order-page .order-label {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.75rem;
+}
+
+.order-page .order-hero h1 {
+  color: var(--text-primary);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.order-page .order-hero h1 span {
+  display: block;
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
+.order-page .order-hero-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.order-page .order-btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  background-color: var(--accent);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.order-page .order-btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-3px);
+}
+
+/* Hero illustrations */
+.order-page .order-hero-icon {
+  position: relative;
+  min-width: 0;
+  min-height: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem 4rem;
+  background-color: #ffedd5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.order-page .order-hero-icon > span {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.order-page .order-hero-note {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  margin: 0;
+  padding: 0.65rem 1rem;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-size: 0.8rem;
+}
+
+/* Ordering steps section */
+.order-page .order-steps {
+  margin-bottom: 4rem;
+}
+
+.order-page .order-section-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.order-page .order-section-heading h2 {
+  color: var(--text-primary);
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  margin-bottom: 0.5rem;
+}
+
+.order-page .order-section-heading > p:last-child {
+  color: var(--text-secondary);
+}
+
+.order-page .order-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.order-page .order-step-card {
+  min-width: 0;
+  padding: 1.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid #e5e7eb;
+  border-top: 5px solid var(--accent);
+  border-radius: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.order-page .order-step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
+}
+
+.order-page .order-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.order-page .order-step-number {
+  color: var(--accent);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.order-page .order-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  background-color: #fff0e6;
+  border-radius: 15px;
+  font-size: 1.7rem;
+}
+
+.order-page .order-step-card h3 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.65rem;
+}
+
+.order-page .order-step-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Guidelines section */
+.order-page .order-guidelines {
+  margin-bottom: 4rem;
+  padding: 2rem;
+  background-color: #fff7ed;
+  border-radius: 20px;
+}
+
+.order-page .order-guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.order-page .order-info-card {
+  min-width: 0;
+  padding: 1.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid #f3e5d8;
+  border-top: 5px solid var(--accent);
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.order-page .order-info-icon {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.order-page .order-info-card h2 {
+  color: var(--text-primary);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  margin-bottom: 0.85rem;
+}
+
+.order-page .order-info-card > p:not(.order-label) {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* list-style restored: the global reset (ul { list-style: none }) would hide bullets */
+.order-page .order-info-card ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-top: 1rem;
+}
+
+.order-page .order-info-card li {
+  color: var(--text-secondary);
+  padding: 0.35rem 0;
+  line-height: 1.65;
+}
+
+/* Bottom call to action */
+.order-page .order-cta {
+  padding: 3rem 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #fff0e6, #ffedd5);
+  border-top: 5px solid var(--accent);
+  border-radius: 20px;
+}
+
+.order-page .order-cta-emoji {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 2.5rem;
+}
+
+.order-page .order-cta h2 {
+  color: var(--text-primary);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  margin-bottom: 0.75rem;
+}
+
+.order-page .order-cta p {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+/* Order page footer */
+.order-page .order-footer {
+  padding: 1.5rem 1rem;
+  color: var(--text-secondary);
+  background-color: var(--bg-card);
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.03);
+}
+
+.order-page .order-footer p {
+  margin: 0;
+}
+
+
+/* 12. FOOTER */
+.footer {
+  padding: 35px 5%;
+  background-color: #111827;
+  color: var(--white);
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.footer-links a {
+  color: #fed7aa;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+
+/* 13. RESPONSIVE DESIGN */
+@media screen and (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px 0;
+    gap: 15px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .hero {
+    min-height: 450px;
+    padding: 70px 5%;
+  }
+
+  .section {
+    padding: 55px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    margin: 2rem auto;
+  }
+
+  .menu-category {
+    padding: 1.5rem;
+  }
+
+  /* Order page - tablet */
+  .order-page .order-main {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .order-page .order-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .order-page .order-nav-links {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .order-page .order-hero {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .order-page .order-hero-icon {
+    min-height: 200px;
+  }
+
+  .order-page .order-steps-grid,
+  .order-page .order-guidelines-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .order-page .order-guidelines {
+    padding: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar {
+    width: 92%;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    gap: 10px 16px;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    min-height: 420px;
+    padding: 60px 6%;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-content > p:not(.tagline) {
+    font-size: 1rem;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  .section {
+    padding: 45px 0;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .food-card {
+    padding: 28px 22px;
+  }
+
+  .footer-links {
+    gap: 12px 20px;
+  }
+}
+
+/* Order page - mobile */
+@media (max-width: 480px) {
+  .order-page .order-main {
+    padding: 0 0.85rem;
+  }
+
+  .order-page .order-header {
+    padding: 1rem 0.5rem;
+  }
+
+  .order-page .order-logo {
+    font-size: 1.5rem;
+  }
+
+  .order-page .order-nav-links a {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .order-page .order-hero {
+    padding: 1.5rem 1.15rem;
+    border-radius: 15px;
+  }
+
+  .order-page .order-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .order-page .order-hero-icon {
+    min-height: 165px;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem 3.5rem;
+  }
+
+  .order-page .order-hero-icon > span {
+    font-size: 2.4rem;
+  }
+
+  .order-page .order-hero-note {
+    right: 8px;
+    bottom: 8px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.72rem;
+  }
+
+  .order-page .order-steps-grid,
+  .order-page .order-guidelines-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-page .order-step-card,
+  .order-page .order-info-card {
+    padding: 1.25rem;
+  }
+
+  .order-page .order-guidelines {
+    padding: 1rem;
+  }
+
+  .order-page .order-cta {
+    padding: 2.25rem 1rem;
+  }
+}
+
+
+/* DEALS PAGE (from develop / feature/deal-page) */
+
+/* Fix the shared main grid for the deals page */
+main:has(.deals-container) {
+  display: block;
+  max-width: 1200px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.page-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-intro h2 {
+  color: var(--secondary-color);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  margin-bottom: 0.5rem;
+}
+
+.page-intro p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--muted-color);
+}
+
+.daily-special {
+  background: var(--white);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  border-top: 5px solid var(--primary-color);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.daily-special h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.daily-special p {
+  color: var(--muted-color);
+  margin-bottom: 0.75rem;
+}
+
+.daily-special .menu-category {
+  max-width: 500px;
+  margin: 0 auto;
+  border-top-color: var(--primary-color);
+}
+
+.daily-special .menu-category:hover {
+  transform: none;
+}
+
+.combo-deals {
+  margin-bottom: 2.5rem;
+}
+
+.combo-deals > h2 {
+  text-align: center;
+  color: var(--secondary-color);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.deals-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.deal-card {
+  min-width: 0;
+  background: var(--white);
+  padding: 1.75rem;
+  border-top: 5px solid var(--primary-color);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.deal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.09);
+}
+
+.deal-card h3 {
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.deal-card p {
+  color: var(--muted-color);
+  margin-bottom: 1rem;
+}
+
+/* list-style restored: the global reset (ul { list-style: none }) would hide bullets */
+.deal-card ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--muted-color);
+}
+
+.deal-card li {
+  margin-bottom: 0.4rem;
+  overflow-wrap: anywhere;
+}
+
+.deal-price {
+  color: var(--price-color);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.deal-button {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+  background: var(--primary-color);
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 14px;
+  overflow-wrap: break-word;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.deal-button:hover {
+  background: var(--primary-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.deal-note {
+  max-width: 750px;
+  margin: 2.5rem auto;
+  padding: 1.5rem;
+  background: #fff7ed;
+  color: var(--secondary-color);
+  border-left: 5px solid var(--primary-color);
+  border-radius: 12px;
+}
+
+.deal-note h2,
+.deal-note h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Deals page - tablet */
+@media (max-width: 900px) {
+  .deals-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Deals page - mobile */
+@media (max-width: 600px) {
+  main:has(.deals-container) {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .deals-container {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-special {
+    padding: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .deal-card {
+    padding: 1.4rem;
+  }
+
+  .combo-deals > h2 {
+    font-size: 1.65rem;
+  }
+}
+
+
+/* 14. REDUCED MOTION ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .order-page *,
+  .order-page *::before,
+  .order-page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
